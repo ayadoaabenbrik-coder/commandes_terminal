@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mes commandes utiles</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --panel: #111827;
+      --panel-2: #1f2937;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #38bdf8;
+      --accent-2: #22c55e;
+      --border: #334155;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+      color: var(--text);
+    }
+
+    header {
+      padding: 28px 18px 18px;
+      text-align: center;
+      border-bottom: 1px solid var(--border);
+      background: rgba(15, 23, 42, 0.95);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(8px);
+      z-index: 10;
+    }
+
+    h1 {
+      margin: 0 0 10px;
+      font-size: 2rem;
+    }
+
+    .subtitle {
+      margin: 0 auto;
+      max-width: 850px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .search-wrap {
+      margin: 18px auto 0;
+      max-width: 760px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    input {
+      width: min(700px, 100%);
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: #020617;
+      color: white;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    main {
+      max-width: 1150px;
+      margin: 0 auto;
+      padding: 24px 16px 48px;
+    }
+
+    .top-note {
+      background: rgba(56, 189, 248, 0.08);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 22px;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 18px;
+    }
+
+    .card {
+      background: rgba(17, 24, 39, 0.95);
+      border: 1px solid var(--border);
+      border-radius: 22px;
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+    }
+
+    .card h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .command {
+      background: var(--panel-2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .command:last-child { margin-bottom: 0; }
+
+    code {
+      display: block;
+      background: #020617;
+      border-radius: 10px;
+      padding: 10px 12px;
+      color: #86efac;
+      font-size: 0.95rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-bottom: 8px;
+    }
+
+    .desc {
+      color: var(--muted);
+      line-height: 1.45;
+      font-size: 0.96rem;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-top: 8px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(34, 197, 94, 0.12);
+      border: 1px solid rgba(34, 197, 94, 0.25);
+      color: #bbf7d0;
+      font-size: 0.82rem;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 24px 16px 40px;
+    }
+
+    .mini {
+      font-size: 0.92rem;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Mes commandes utiles</h1>
+    <p class="subtitle">
+      Une fiche simple pour réviser Git, Linux, CMake, GCC, tests, SDL2, HTML et LaTeX.
+      Tu peux chercher un mot comme <strong>coverage</strong>, <strong>switch</strong>, <strong>cp -r</strong>, <strong>add_test</strong> ou <strong>includegraphics</strong>.
+    </p>
+    <div class="search-wrap">
+      <input id="searchInput" type="text" placeholder="Rechercher une commande, un mot-clé, une option..." />
+    </div>
+  </header>
+
+  <main>
+    <div class="top-note">
+      <strong>Les réponses à retenir vite :</strong><br>
+      -O3, cp -r, --coverage, switch, reset, .gitignore, .clang-format, add_test, target_link_libraries, &lt;canvas&gt;, &lt;script&gt;, \includegraphics, verbatim, SDL_RenderCopyEx, SDL_GetMouseState.
+    </div>
+
+    <section class="grid" id="cardsContainer">
+      <article class="card searchable">
+        <h2>Git</h2>
+
+        <div class="command"><code>git clone &lt;url&gt;</code><div class="desc">Cloner un dépôt Git distant sur ta machine.</div></div>
+        <div class="command"><code>git status</code><div class="desc">Voir l’état actuel du dépôt.</div></div>
+        <div class="command"><code>git add &lt;fichier&gt;</code><div class="desc">Ajouter un fichier à l’index.</div></div>
+        <div class="command"><code>git add .</code><div class="desc">Ajouter toutes les modifications du dossier courant.</div></div>
+        <div class="command"><code>git commit -m "message explicite"</code><div class="desc">Créer un commit avec un message clair.</div></div>
+        <div class="command"><code>git log</code><div class="desc">Afficher l’historique des commits.</div></div>
+        <div class="command"><code>git diff</code><div class="desc">Voir les différences non commit.</div></div>
+        <div class="command"><code>git pull</code><div class="desc">Récupérer les modifications distantes.</div></div>
+        <div class="command"><code>git push</code><div class="desc">Envoyer les commits vers le dépôt distant.</div></div>
+        <div class="command"><code>git branch</code><div class="desc">Afficher les branches locales.</div></div>
+        <div class="command"><code>git branch -a</code><div class="desc">Afficher les branches locales et distantes.</div></div>
+        <div class="command"><code>git switch &lt;branche&gt;</code><div class="desc">Changer de branche.</div><span class="badge">Très important</span></div>
+        <div class="command"><code>git switch -c &lt;nouvelle_branche&gt;</code><div class="desc">Créer puis ouvrir une nouvelle branche.</div></div>
+        <div class="command"><code>git checkout &lt;branche&gt;</code><div class="desc">Ancienne commande pour changer de branche.</div></div>
+        <div class="command"><code>git merge &lt;branche&gt;</code><div class="desc">Fusionner une branche dans la branche courante.</div></div>
+        <div class="command"><code>git reset --hard HEAD~1</code><div class="desc">Supprimer le dernier commit et revenir à l’état précédent.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>git fetch</code><div class="desc">Récupérer les mises à jour distantes sans fusion immédiate.</div></div>
+        <div class="command"><code>git remote -v</code><div class="desc">Voir les URL des dépôts distants.</div></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>Configuration Git</h2>
+
+        <div class="command"><code>git config --global user.name "Prénom Nom"</code><div class="desc">Définir le nom d’auteur global.</div></div>
+        <div class="command"><code>git config --global user.email "prenom.nom@etu.u-bordeaux.fr"</code><div class="desc">Définir l’email global.</div></div>
+        <div class="command"><code>git config --global core.editor "nano"</code><div class="desc">Définir l’éditeur par défaut.</div></div>
+        <div class="command"><code>git config --global pull.rebase false</code><div class="desc">Configurer le comportement de git pull.</div></div>
+        <div class="command"><code>git config --global -l</code><div class="desc">Afficher toute la configuration Git globale.</div></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>SSH / GitLab</h2>
+
+        <div class="command"><code>ssh-keygen</code><div class="desc">Créer une clé SSH.</div></div>
+        <div class="command"><code>cat ~/.ssh/id_rsa.pub</code><div class="desc">Afficher la clé publique à copier dans GitLab.</div></div>
+        <div class="command"><code>ssh -T git@gitlab.emi.u-bordeaux.fr</code><div class="desc">Tester la connexion SSH à GitLab.</div></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>Linux / terminal</h2>
+
+        <div class="command"><code>pwd</code><div class="desc">Afficher le dossier courant.</div></div>
+        <div class="command"><code>ls</code><div class="desc">Lister les fichiers.</div></div>
+        <div class="command"><code>ls -l</code><div class="desc">Lister avec détails.</div></div>
+        <div class="command"><code>ls -la</code><div class="desc">Lister tout, y compris les fichiers cachés.</div></div>
+        <div class="command"><code>cd &lt;dossier&gt;</code><div class="desc">Entrer dans un dossier.</div></div>
+        <div class="command"><code>mkdir &lt;dossier&gt;</code><div class="desc">Créer un dossier.</div></div>
+        <div class="command"><code>mkdir -p &lt;dossier&gt;</code><div class="desc">Créer un dossier et ses parents si besoin.</div></div>
+        <div class="command"><code>cp &lt;fichier&gt; &lt;destination&gt;</code><div class="desc">Copier un fichier.</div></div>
+        <div class="command"><code>cp -r &lt;dossier&gt; &lt;destination&gt;</code><div class="desc">Copier un répertoire.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>mv &lt;source&gt; &lt;destination&gt;</code><div class="desc">Déplacer ou renommer.</div></div>
+        <div class="command"><code>rm &lt;fichier&gt;</code><div class="desc">Supprimer un fichier.</div></div>
+        <div class="command"><code>rm -r &lt;dossier&gt;</code><div class="desc">Supprimer un dossier récursivement.</div></div>
+        <div class="command"><code>rm -rf build</code><div class="desc">Supprimer complètement le dossier build.</div></div>
+        <div class="command"><code>find . -name "*.c"</code><div class="desc">Chercher les fichiers .c.</div></div>
+        <div class="command"><code>grep -R "mot" .</code><div class="desc">Chercher un mot dans les fichiers.</div></div>
+        <div class="command"><code>cat &lt;fichier&gt;</code><div class="desc">Afficher un fichier dans le terminal.</div></div>
+        <div class="command"><code>echo $?</code><div class="desc">Voir le code de retour de la dernière commande.</div></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>CMake / build</h2>
+
+        <div class="command"><code>mkdir build</code><div class="desc">Créer le dossier de compilation.</div></div>
+        <div class="command"><code>cd build</code><div class="desc">Entrer dans le dossier build.</div></div>
+        <div class="command"><code>cmake ..</code><div class="desc">Générer les fichiers de build out-of-source.</div></div>
+        <div class="command"><code>cmake .</code><div class="desc">Générer les fichiers de build in-source.</div></div>
+        <div class="command"><code>make</code><div class="desc">Compiler le projet.</div></div>
+        <div class="command"><code>make VERBOSE=ON</code><div class="desc">Voir les vraies commandes de compilation.</div></div>
+        <div class="command"><code>make test</code><div class="desc">Lancer les tests.</div></div>
+        <div class="command"><code>ctest</code><div class="desc">Lancer tous les tests avec CTest.</div></div>
+        <div class="command"><code>ctest -R dummy</code><div class="desc">Lancer seulement les tests qui correspondent au motif.</div></div>
+        <div class="command"><code>make ExperimentalCoverage</code><div class="desc">Calculer la couverture du code.</div></div>
+        <div class="command"><code>make ExperimentalMemCheck</code><div class="desc">Chercher les fuites mémoire avec Valgrind via CMake.</div></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>Fonctions CMake à connaître</h2>
+
+        <div class="command"><code>cmake_minimum_required(VERSION 3.5)</code><div class="desc">Version minimale de CMake.</div></div>
+        <div class="command"><code>project(monprojet C)</code><div class="desc">Définir le projet.</div></div>
+        <div class="command"><code>set(CMAKE_C_FLAGS "-std=c99 -g -Wall")</code><div class="desc">Définir les options de compilation C.</div></div>
+        <div class="command"><code>add_library(game game.c game_aux.c)</code><div class="desc">Créer une bibliothèque.</div></div>
+        <div class="command"><code>add_executable(game_text game_text.c)</code><div class="desc">Créer un exécutable.</div></div>
+        <div class="command"><code>target_link_libraries(game_text game m)</code><div class="desc">Lier une bibliothèque à un exécutable.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>enable_testing()</code><div class="desc">Activer les tests.</div></div>
+        <div class="command"><code>include(CTest)</code><div class="desc">Ajouter les cibles liées à CTest et MemCheck.</div></div>
+        <div class="command"><code>add_test(test_dummy ./game_test_login dummy)</code><div class="desc">Ajouter un test CTest.</div><span class="badge">Question fréquente</span></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>GCC</h2>
+
+        <div class="command"><code>-g</code><div class="desc">Ajouter les infos de debug.</div></div>
+        <div class="command"><code>-Wall</code><div class="desc">Afficher les warnings principaux.</div></div>
+        <div class="command"><code>-Wextra</code><div class="desc">Afficher encore plus de warnings.</div></div>
+        <div class="command"><code>-std=c99</code><div class="desc">Compiler en norme C99.</div></div>
+        <div class="command"><code>-O0</code><div class="desc">Pas d’optimisation.</div></div>
+        <div class="command"><code>-O1</code><div class="desc">Optimisation légère.</div></div>
+        <div class="command"><code>-O2</code><div class="desc">Optimisation avancée.</div></div>
+        <div class="command"><code>-O3</code><div class="desc">Niveau maximal d’optimisation.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>--coverage</code><div class="desc">Activer la couverture de code.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>gcc -std=c99 -g -Wall main.c -o prog</code><div class="desc">Compilation simple.</div></div>
+        <div class="command"><code>gcc -std=c99 -g -Wall main.c lib.c -lm -o prog</code><div class="desc">Compilation avec la bibliothèque mathématique.</div></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>Tests / debug / mémoire</h2>
+
+        <div class="command"><code>./test_queue length</code><div class="desc">Lancer un test précis.</div></div>
+        <div class="command"><code>echo $?</code><div class="desc">Voir si le test a réussi : 0 = succès.</div></div>
+        <div class="command"><code>valgrind ./prog</code><div class="desc">Exécuter un programme sous Valgrind.</div></div>
+        <div class="command"><code>valgrind --leak-check=full ./prog</code><div class="desc">Analyse détaillée des fuites mémoire.</div></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>HTML</h2>
+
+        <div class="command"><code>&lt;canvas&gt;</code><div class="desc">Balise pour dessiner dans la page.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>&lt;script&gt;</code><div class="desc">Balise pour inclure du JavaScript.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>&lt;img&gt;</code><div class="desc">Afficher une image.</div></div>
+        <div class="command"><code>&lt;link&gt;</code><div class="desc">Lier une feuille de style CSS.</div></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>SDL2</h2>
+
+        <div class="command"><code>SDL_CreateWindow</code><div class="desc">Créer une fenêtre.</div></div>
+        <div class="command"><code>SDL_CreateRenderer</code><div class="desc">Créer un renderer.</div></div>
+        <div class="command"><code>SDL_RenderClear</code><div class="desc">Effacer le rendu actuel.</div></div>
+        <div class="command"><code>SDL_RenderPresent</code><div class="desc">Afficher le rendu à l’écran.</div></div>
+        <div class="command"><code>SDL_RenderCopy</code><div class="desc">Afficher une texture.</div></div>
+        <div class="command"><code>SDL_RenderCopyEx</code><div class="desc">Afficher une texture avec rotation.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>SDL_PollEvent</code><div class="desc">Lire les événements SDL.</div></div>
+        <div class="command"><code>SDL_GetMouseState</code><div class="desc">Récupérer les coordonnées de la souris.</div><span class="badge">Question fréquente</span></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>LaTeX</h2>
+
+        <div class="command"><code>\includegraphics</code><div class="desc">Commande pour inclure une image.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>verbatim</code><div class="desc">Environnement pour du texte brut non interprété.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>\textbf</code><div class="desc">Mettre du texte en gras.</div></div>
+        <div class="command"><code>\textit</code><div class="desc">Mettre du texte en italique.</div></div>
+        <div class="command"><code>itemize</code><div class="desc">Liste à puces.</div></div>
+        <div class="command"><code>enumerate</code><div class="desc">Liste numérotée.</div></div>
+      </article>
+
+      <article class="card searchable">
+        <h2>Fichiers spéciaux à retenir</h2>
+
+        <div class="command"><code>.gitignore</code><div class="desc">Permet à Git d’ignorer certains fichiers.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>.clang-format</code><div class="desc">Permet de définir la mise en forme du code.</div><span class="badge">Question fréquente</span></div>
+        <div class="command"><code>CMakeLists.txt</code><div class="desc">Fichier principal de configuration CMake.</div></div>
+        <div class="command"><code>README.md</code><div class="desc">Fichier de présentation du projet.</div></div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <div>Site personnel de révision</div>
+    <div class="mini">Astuce : ouvre cette page dans ton navigateur et fais Ctrl+F ou utilise la barre de recherche.</div>
+  </footer>
+
+  <script>
+    const input = document.getElementById('searchInput');
+    const cards = document.querySelectorAll('.searchable');
+
+    input.addEventListener('input', function () {
+      const value = input.value.toLowerCase().trim();
+
+      cards.forEach(card => {
+        const text = card.innerText.toLowerCase();
+        if (text.includes(value)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
